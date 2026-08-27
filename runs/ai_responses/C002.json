@@ -1,0 +1,17 @@
+{
+  "case_id": "C002",
+  "raw_response": "{\n  \"root_cause\": \"R2's physical interface connected to the network segment for HSRP/VLAN 30 is administratively down, and R2 lacks the HSRP preempt configuration, causing traffic routed through R2 to drop while R1 functions correctly.\",\n  \"confidence\": 95,\n  \"evidence\": \"show standby brief shows R1 is Active and R2 is Standby without the 'P' (preempt) flag, and show ip interface brief on R2 shows GigabitEthernet0/1 is administratively down.\",\n  \"next_command\": \"show running-config interface gigabitethernet0/1\",\n  \"fix_steps\": [\n    \"Enter configuration mode for interface GigabitEthernet0/1 on R2.\",\n    \"Execute the 'no shutdown' command to bring up the interface.\",\n    \"Configure HSRP preempt on both R1 and R2 for VLAN 30 to ensure predictable active router selection.\",\n    \"Verify connectivity from the affected PCs.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "R2's physical interface connected to the network segment for HSRP/VLAN 30 is administratively down, and R2 lacks the HSRP preempt configuration, causing traffic routed through R2 to drop while R1 functions correctly.",
+    "confidence": 95,
+    "evidence": "show standby brief shows R1 is Active and R2 is Standby without the 'P' (preempt) flag, and show ip interface brief on R2 shows GigabitEthernet0/1 is administratively down.",
+    "next_command": "show running-config interface gigabitethernet0/1",
+    "fix_steps": [
+      "Enter configuration mode for interface GigabitEthernet0/1 on R2.",
+      "Execute the 'no shutdown' command to bring up the interface.",
+      "Configure HSRP preempt on both R1 and R2 for VLAN 30 to ensure predictable active router selection.",
+      "Verify connectivity from the affected PCs."
+    ]
+  }
+}

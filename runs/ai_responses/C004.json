@@ -1,0 +1,16 @@
+{
+  "case_id": "C004",
+  "raw_response": "{\n  \"root_cause\": \"Port security put interface Fa0/5 into a 'Secure-shutdown' state because a different MAC address (the laptop on Tuesday) was detected when the maximum allowed was set to 1.\",\n  \"confidence\": 95,\n  \"evidence\": \"show port-security interface Fa0/5 shows Port Status is Secure-shutdown and Violation Count is 1, indicating a port security violation occurred when the laptop was plugged into a new port.\",\n  \"next_command\": \"show port-security\",\n  \"fix_steps\": [\n    \"Identify and resolve the port security violation by shutting down and no shutting the interface (or setting 'no switchport port-security violation shutdown' if policy permits).\",\n    \"Ensure the correct port-security sticky MAC entry is cleared if the student has moved permanently.\",\n    \"Verify the port status returns to 'Secure-up' and the student can connect.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "Port security put interface Fa0/5 into a 'Secure-shutdown' state because a different MAC address (the laptop on Tuesday) was detected when the maximum allowed was set to 1.",
+    "confidence": 95,
+    "evidence": "show port-security interface Fa0/5 shows Port Status is Secure-shutdown and Violation Count is 1, indicating a port security violation occurred when the laptop was plugged into a new port.",
+    "next_command": "show port-security",
+    "fix_steps": [
+      "Identify and resolve the port security violation by shutting down and no shutting the interface (or setting 'no switchport port-security violation shutdown' if policy permits).",
+      "Ensure the correct port-security sticky MAC entry is cleared if the student has moved permanently.",
+      "Verify the port status returns to 'Secure-up' and the student can connect."
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "C017",
+  "raw_response": "{\n  \"root_cause\": \"IP address space overlap (overlapping subnets). Both branch offices are using the exact same subnet (192.168.1.0/24), causing routing ambiguity since the router cannot distinguish between local traffic and remote traffic for the same destination network.\",\n  \"confidence\": 95,\n  \"evidence\": \"Branch A's local Vlan1 interface is configured with 192.168.1.1 255.255.255.0, yet the routing table shows 192.168.1.0/24 is also routed via the WAN link Se0/0/0, creating a conflict where the router has overlapping paths for the same subnet.\",\n  \"next_command\": \"show ip route\",\n  \"fix_steps\": [\n    \"Re-address one of the branch networks to use a unique non-overlapping private subnet (e.g., 192.168.2.0/24).\",\n    \"Alternatively, implement Network Address Translation (NAT) on the WAN routers to translate the overlapping addresses if re-addressing is not immediately possible.\",\n    \"Update static routes or routing protocols accordingly to reflect the new unique subnet paths.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "IP address space overlap (overlapping subnets). Both branch offices are using the exact same subnet (192.168.1.0/24), causing routing ambiguity since the router cannot distinguish between local traffic and remote traffic for the same destination network.",
+    "confidence": 95,
+    "evidence": "Branch A's local Vlan1 interface is configured with 192.168.1.1 255.255.255.0, yet the routing table shows 192.168.1.0/24 is also routed via the WAN link Se0/0/0, creating a conflict where the router has overlapping paths for the same subnet.",
+    "next_command": "show ip route",
+    "fix_steps": [
+      "Re-address one of the branch networks to use a unique non-overlapping private subnet (e.g., 192.168.2.0/24).",
+      "Alternatively, implement Network Address Translation (NAT) on the WAN routers to translate the overlapping addresses if re-addressing is not immediately possible.",
+      "Update static routes or routing protocols accordingly to reflect the new unique subnet paths."
+    ]
+  }
+}

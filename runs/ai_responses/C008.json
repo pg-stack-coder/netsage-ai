@@ -1,0 +1,16 @@
+{
+  "case_id": "C008",
+  "raw_response": "{\n  \"root_cause\": \"Corporate Wi-Fi users are experiencing intermittent authentication drops because the RADIUS server is failing to respond to Access-Request packets within the 5000ms timeout window, causing clients to fall back to the Re-Authenticating state.\",\n  \"confidence\": 95,\n  \"evidence\": \"RADIUS server log explicitly shows 'Access-Request timeout, no Access-Accept received within 5000ms, retry count 3', and wireless client summary shows corporate clients stuck in State: Re-Authenticating.\",\n  \"next_command\": \"debug radius authentication\",\n  \"fix_steps\": [\n    \"Check network connectivity and routing between the wireless controller/AP and the RADIUS server.\",\n    \"Verify that the RADIUS server is operational and not overloaded.\",\n    \"Increase the RADIUS timeout and retry parameters on the wireless controller if network latency is the cause.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "Corporate Wi-Fi users are experiencing intermittent authentication drops because the RADIUS server is failing to respond to Access-Request packets within the 5000ms timeout window, causing clients to fall back to the Re-Authenticating state.",
+    "confidence": 95,
+    "evidence": "RADIUS server log explicitly shows 'Access-Request timeout, no Access-Accept received within 5000ms, retry count 3', and wireless client summary shows corporate clients stuck in State: Re-Authenticating.",
+    "next_command": "debug radius authentication",
+    "fix_steps": [
+      "Check network connectivity and routing between the wireless controller/AP and the RADIUS server.",
+      "Verify that the RADIUS server is operational and not overloaded.",
+      "Increase the RADIUS timeout and retry parameters on the wireless controller if network latency is the cause."
+    ]
+  }
+}

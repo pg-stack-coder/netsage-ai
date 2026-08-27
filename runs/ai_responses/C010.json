@@ -1,0 +1,16 @@
+{
+  "case_id": "C010",
+  "raw_response": "{\n  \"root_cause\": \"The newly added switch had a higher VTP configuration revision number (47) than the existing network domain (12), causing it to overwrite the VLAN database across all switches in the VTP domain and wipe out all user-defined VLANs.\",\n  \"confidence\": 100,\n  \"evidence\": \"show vtp status on the new switch shows Configuration Revision 47 in the CORP domain, while existing switches only had Configuration Revision 12, causing the lower-revision switches to accept the higher revision's database.\",\n  \"next_command\": \"show vlan brief\",\n  \"fix_steps\": [\n    \"Isolate the improperly configured switch from the VTP domain by changing its domain name or setting its VTP mode to transparent.\",\n    \"Restore the VLAN database from backups or manually recreate the missing VLANs on the master VTP server.\",\n    \"Reset the VTP configuration revision on the replacement switch (e.g., by changing its domain name temporarily back and forth, or setting VTP mode to transparent and back to server) before re-joining it to the network.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The newly added switch had a higher VTP configuration revision number (47) than the existing network domain (12), causing it to overwrite the VLAN database across all switches in the VTP domain and wipe out all user-defined VLANs.",
+    "confidence": 100,
+    "evidence": "show vtp status on the new switch shows Configuration Revision 47 in the CORP domain, while existing switches only had Configuration Revision 12, causing the lower-revision switches to accept the higher revision's database.",
+    "next_command": "show vlan brief",
+    "fix_steps": [
+      "Isolate the improperly configured switch from the VTP domain by changing its domain name or setting its VTP mode to transparent.",
+      "Restore the VLAN database from backups or manually recreate the missing VLANs on the master VTP server.",
+      "Reset the VTP configuration revision on the replacement switch (e.g., by changing its domain name temporarily back and forth, or setting VTP mode to transparent and back to server) before re-joining it to the network."
+    ]
+  }
+}

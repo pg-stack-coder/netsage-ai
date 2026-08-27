@@ -1,0 +1,17 @@
+{
+  "case_id": "C028",
+  "raw_response": "{\n  \"root_cause\": \"The NAT access list 'NAT-ACL' uses an overly broad 'permit ip any any' statement instead of specifying only external/internet-bound subnets, causing the router to inappropriately perform NAT on traffic between internal servers on different VLANs.\",\n  \"confidence\": 95,\n  \"evidence\": \"show ip nat translations shows an active TCP translation between internal private IP addresses (10.10.5.5 and 10.10.20.10), and show access-lists NAT-ACL confirms rule 10 is 'permit ip any any' with over 4000 matches.\",\n  \"next_command\": \"show running-config | include ip nat\",\n  \"fix_steps\": [\n    \"Enter global configuration mode on the router.\",\n    \"Modify the NAT access list (NAT-ACL) to specifically permit only internal source subnets and deny internal-to-internal traffic, or restrict the permit statement to target external destinations.\",\n    \"Clear existing NAT translations using 'clear ip nat translation *'.\",\n    \"Verify that communication between the two internal servers no longer shows up in NAT translations and that the application functions correctly.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The NAT access list 'NAT-ACL' uses an overly broad 'permit ip any any' statement instead of specifying only external/internet-bound subnets, causing the router to inappropriately perform NAT on traffic between internal servers on different VLANs.",
+    "confidence": 95,
+    "evidence": "show ip nat translations shows an active TCP translation between internal private IP addresses (10.10.5.5 and 10.10.20.10), and show access-lists NAT-ACL confirms rule 10 is 'permit ip any any' with over 4000 matches.",
+    "next_command": "show running-config | include ip nat",
+    "fix_steps": [
+      "Enter global configuration mode on the router.",
+      "Modify the NAT access list (NAT-ACL) to specifically permit only internal source subnets and deny internal-to-internal traffic, or restrict the permit statement to target external destinations.",
+      "Clear existing NAT translations using 'clear ip nat translation *'.",
+      "Verify that communication between the two internal servers no longer shows up in NAT translations and that the application functions correctly."
+    ]
+  }
+}

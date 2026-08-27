@@ -1,0 +1,16 @@
+{
+  "case_id": "C029",
+  "raw_response": "{\n  \"root_cause\": \"An IP address conflict is occurring on the network because a statically assigned IP address on a newly connected PC matches the address already in use by PC-A (10.10.2.50).\",\n  \"confidence\": 95,\n  \"evidence\": \"Windows Event Viewer on PC-A reports an IP address conflict with address 10.10.2.50, and the switch's ARP cache shows the same IP address resolving to two different MAC addresses within a short timeframe.\",\n  \"next_command\": \"show ip arp | include 10.10.2.50\",\n  \"fix_steps\": [\n    \"Identify the MAC address of the newly added PC causing the conflict.\",\n    \"Reconfigure the newly added PC to use a different, available IP address outside the active DHCP scope or reserve its current IP properly.\",\n    \"Verify that PC-A regains stable connectivity and clear the ARP cache on the switch if necessary.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "An IP address conflict is occurring on the network because a statically assigned IP address on a newly connected PC matches the address already in use by PC-A (10.10.2.50).",
+    "confidence": 95,
+    "evidence": "Windows Event Viewer on PC-A reports an IP address conflict with address 10.10.2.50, and the switch's ARP cache shows the same IP address resolving to two different MAC addresses within a short timeframe.",
+    "next_command": "show ip arp | include 10.10.2.50",
+    "fix_steps": [
+      "Identify the MAC address of the newly added PC causing the conflict.",
+      "Reconfigure the newly added PC to use a different, available IP address outside the active DHCP scope or reserve its current IP properly.",
+      "Verify that PC-A regains stable connectivity and clear the ARP cache on the switch if necessary."
+    ]
+  }
+}

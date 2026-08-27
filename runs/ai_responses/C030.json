@@ -1,0 +1,16 @@
+{
+  "case_id": "C030",
+  "raw_response": "{\n  \"root_cause\": \"The PC was configured with an incorrect subnet mask of 255.255.255.240 instead of 255.255.255.0, causing it to treat other devices in its own VLAN (like 10.10.4.80) as being on a remote network and failing to reach them directly.\",\n  \"confidence\": 100,\n  \"evidence\": \"ipconfig /all shows the subnet mask is 255.255.255.240, and pinging 10.10.4.80 results in a 'Destination host unreachable' error because that IP falls outside the PC's computed local subnet range.\",\n  \"next_command\": \"ipconfig (to verify the network configuration locally)\",\n  \"fix_steps\": [\n    \"Access the network adapter properties on the PC.\",\n    \"Change the IPv4 Subnet Mask from 255.255.255.240 to 255.255.255.0.\",\n    \"Test connectivity by pinging devices across the entire VLAN subnet.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The PC was configured with an incorrect subnet mask of 255.255.255.240 instead of 255.255.255.0, causing it to treat other devices in its own VLAN (like 10.10.4.80) as being on a remote network and failing to reach them directly.",
+    "confidence": 100,
+    "evidence": "ipconfig /all shows the subnet mask is 255.255.255.240, and pinging 10.10.4.80 results in a 'Destination host unreachable' error because that IP falls outside the PC's computed local subnet range.",
+    "next_command": "ipconfig (to verify the network configuration locally)",
+    "fix_steps": [
+      "Access the network adapter properties on the PC.",
+      "Change the IPv4 Subnet Mask from 255.255.255.240 to 255.255.255.0.",
+      "Test connectivity by pinging devices across the entire VLAN subnet."
+    ]
+  }
+}

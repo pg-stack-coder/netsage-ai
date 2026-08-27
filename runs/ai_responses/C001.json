@@ -1,0 +1,16 @@
+{
+  "case_id": "C001",
+  "raw_response": "{\n  \"root_cause\": \"Spanning Tree topology changes and link instability between SW1 and SW2 are causing intermittent connectivity loss, evidenced by frequent %SPANTREE-2-ROOTCHANGE logs and physical interface errors (collisions/input errors) on redundant paths without EtherChannel configuration.\",\n  \"confidence\": 85,\n  \"evidence\": \"show spanning-tree vlan 20 shows root changes logged 6 times in 4 minutes, and show interfaces FastEthernet0/2 shows 1142 collisions and input errors.\",\n  \"next_command\": \"show interfaces trunk\",\n  \"fix_steps\": [\n    \"Check physical cables and duplex settings on FastEthernet0/1 and FastEthernet0/2 to eliminate physical link issues.\",\n    \"Configure an EtherChannel (Port-Channel) between SW1 and SW2 to properly handle redundant links instead of letting Spanning Tree block one link while the other drops frames.\",\n    \"Verify Spanning Tree stability and check for any unauthorized switches or bridge priority misconfigurations.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "Spanning Tree topology changes and link instability between SW1 and SW2 are causing intermittent connectivity loss, evidenced by frequent %SPANTREE-2-ROOTCHANGE logs and physical interface errors (collisions/input errors) on redundant paths without EtherChannel configuration.",
+    "confidence": 85,
+    "evidence": "show spanning-tree vlan 20 shows root changes logged 6 times in 4 minutes, and show interfaces FastEthernet0/2 shows 1142 collisions and input errors.",
+    "next_command": "show interfaces trunk",
+    "fix_steps": [
+      "Check physical cables and duplex settings on FastEthernet0/1 and FastEthernet0/2 to eliminate physical link issues.",
+      "Configure an EtherChannel (Port-Channel) between SW1 and SW2 to properly handle redundant links instead of letting Spanning Tree block one link while the other drops frames.",
+      "Verify Spanning Tree stability and check for any unauthorized switches or bridge priority misconfigurations."
+    ]
+  }
+}

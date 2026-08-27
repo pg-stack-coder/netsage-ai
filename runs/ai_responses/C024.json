@@ -1,0 +1,16 @@
+{
+  "case_id": "C024",
+  "raw_response": "{\n  \"root_cause\": \"The shared uplink interface (Gi0/1) is experiencing congestion and packet drops near 100% capacity during large file uploads, and VoIP traffic is suffering because no Quality of Service (QoS) policy is configured to prioritize voice packets over bulk data.\",\n  \"confidence\": 95,\n  \"evidence\": \"show policy-map interface Gi0/1 shows no service-policy attached, and show interfaces Gi0/1 shows the interface bandwidth is near saturation at 98.5 Mbps out of 100 Mbps during upload windows.\",\n  \"next_command\": \"show interfaces Gi0/1 queueing\",\n  \"fix_steps\": [\n    \"Define a QoS policy-map that classifies VoIP traffic (marking with DSCP EF) and bulk data traffic (marking with DSCP AF11 or CS0).\",\n    \"Configure priority queueing (priority level) for the VoIP traffic class.\",\n    \"Apply the service-policy outbound on interface Gi0/1 using the 'service-policy output <policy-name>' command.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The shared uplink interface (Gi0/1) is experiencing congestion and packet drops near 100% capacity during large file uploads, and VoIP traffic is suffering because no Quality of Service (QoS) policy is configured to prioritize voice packets over bulk data.",
+    "confidence": 95,
+    "evidence": "show policy-map interface Gi0/1 shows no service-policy attached, and show interfaces Gi0/1 shows the interface bandwidth is near saturation at 98.5 Mbps out of 100 Mbps during upload windows.",
+    "next_command": "show interfaces Gi0/1 queueing",
+    "fix_steps": [
+      "Define a QoS policy-map that classifies VoIP traffic (marking with DSCP EF) and bulk data traffic (marking with DSCP AF11 or CS0).",
+      "Configure priority queueing (priority level) for the VoIP traffic class.",
+      "Apply the service-policy outbound on interface Gi0/1 using the 'service-policy output <policy-name>' command."
+    ]
+  }
+}

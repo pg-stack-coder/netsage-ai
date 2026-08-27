@@ -1,0 +1,16 @@
+{
+  "case_id": "C009",
+  "raw_response": "{\n  \"root_cause\": \"The inbound ACL on the server's VLAN interface permits ICMP and SSH (port 22) from the IT subnet (10.10.5.0/24), but lacks permit statements for HTTP (port 80) and HTTPS (port 443), causing web traffic to be blocked by the implicit deny-all rule.\",\n  \"confidence\": 95,\n  \"evidence\": \"show access-lists output shows explicit permit rules for ICMP and TCP port 22, but no rules for ports 80 or 443, and 89 matches on the deny ip any any statement.\",\n  \"next_command\": \"show running-config interface vlan <server_vlan>\",\n  \"fix_steps\": [\n    \"Enter global configuration mode on the router or switch where the ACL is applied.\",\n    \"Modify the access list STAFF-TO-SERVER to add permit statements for TCP ports 80 (HTTP) and 443 (HTTPS) from the staff subnet.\",\n    \"Verify HTTP/HTTPS access from the IT staff subnet to the server.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The inbound ACL on the server's VLAN interface permits ICMP and SSH (port 22) from the IT subnet (10.10.5.0/24), but lacks permit statements for HTTP (port 80) and HTTPS (port 443), causing web traffic to be blocked by the implicit deny-all rule.",
+    "confidence": 95,
+    "evidence": "show access-lists output shows explicit permit rules for ICMP and TCP port 22, but no rules for ports 80 or 443, and 89 matches on the deny ip any any statement.",
+    "next_command": "show running-config interface vlan <server_vlan>",
+    "fix_steps": [
+      "Enter global configuration mode on the router or switch where the ACL is applied.",
+      "Modify the access list STAFF-TO-SERVER to add permit statements for TCP ports 80 (HTTP) and 443 (HTTPS) from the staff subnet.",
+      "Verify HTTP/HTTPS access from the IT staff subnet to the server."
+    ]
+  }
+}

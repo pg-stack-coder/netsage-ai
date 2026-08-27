@@ -1,0 +1,16 @@
+{
+  "case_id": "C031",
+  "raw_response": "{\n  \"root_cause\": \"Traffic from VLAN 80 is blocked at two points: VLAN 80 is missing from the allowed VLAN list on the core-facing trunk link of the access switch, and the router's ACL for VLAN 80 only permits traffic to VLAN 20 instead of VLAN 10.\",\n  \"confidence\": 100,\n  \"evidence\": \"show interfaces trunk on the access switch shows Vlans allowed on trunk do not include VLAN 80 (only 1,10,20,30), and show access-lists VLAN80-ACL on the router shows traffic is only permitted to 10.10.20.0/24.\",\n  \"next_command\": \"show running-config interface g0/1 (or the specific trunk interface on the access switch)\",\n  \"fix_steps\": [\n    \"Modify the trunk interface on the access switch to allow VLAN 80 (switchport trunk allowed vlan add 80).\",\n    \"Update the router's VLAN80-ACL to permit traffic destined for VLAN 10 (10.10.10.0/24).\",\n    \"Verify ping connectivity from a PC on VLAN 80 to the file server on VLAN 10.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "Traffic from VLAN 80 is blocked at two points: VLAN 80 is missing from the allowed VLAN list on the core-facing trunk link of the access switch, and the router's ACL for VLAN 80 only permits traffic to VLAN 20 instead of VLAN 10.",
+    "confidence": 100,
+    "evidence": "show interfaces trunk on the access switch shows Vlans allowed on trunk do not include VLAN 80 (only 1,10,20,30), and show access-lists VLAN80-ACL on the router shows traffic is only permitted to 10.10.20.0/24.",
+    "next_command": "show running-config interface g0/1 (or the specific trunk interface on the access switch)",
+    "fix_steps": [
+      "Modify the trunk interface on the access switch to allow VLAN 80 (switchport trunk allowed vlan add 80).",
+      "Update the router's VLAN80-ACL to permit traffic destined for VLAN 10 (10.10.10.0/24).",
+      "Verify ping connectivity from a PC on VLAN 80 to the file server on VLAN 10."
+    ]
+  }
+}

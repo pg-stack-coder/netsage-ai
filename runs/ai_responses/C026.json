@@ -1,0 +1,17 @@
+{
+  "case_id": "C026",
+  "raw_response": "{\n  \"root_cause\": \"The uplink port connecting the new switch to the main switch is configured as a static access port instead of an 802.1Q trunk, which restricts traffic to a single VLAN and prevents inter-VLAN routing or reachability beyond the local switch.\",\n  \"confidence\": 100,\n  \"evidence\": \"show interfaces switchport Gi0/1 shows Administrative Mode is set to 'static access' and Operational Mode is 'static access' for VLAN 20, rather than trunk mode passing multiple VLANs.\",\n  \"next_command\": \"show interfaces trunk\",\n  \"fix_steps\": [\n    \"Access the configuration mode for the uplink interface (Gi0/1) on the switch.\",\n    \"Change the port mode to trunk using the command 'switchport mode trunk'.\",\n    \"Specify the allowed VLANs on the trunk if necessary using 'switchport trunk allowed vlan'.\",\n    \"Verify connectivity from the PCs in the new room to destinations beyond the switch.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The uplink port connecting the new switch to the main switch is configured as a static access port instead of an 802.1Q trunk, which restricts traffic to a single VLAN and prevents inter-VLAN routing or reachability beyond the local switch.",
+    "confidence": 100,
+    "evidence": "show interfaces switchport Gi0/1 shows Administrative Mode is set to 'static access' and Operational Mode is 'static access' for VLAN 20, rather than trunk mode passing multiple VLANs.",
+    "next_command": "show interfaces trunk",
+    "fix_steps": [
+      "Access the configuration mode for the uplink interface (Gi0/1) on the switch.",
+      "Change the port mode to trunk using the command 'switchport mode trunk'.",
+      "Specify the allowed VLANs on the trunk if necessary using 'switchport trunk allowed vlan'.",
+      "Verify connectivity from the PCs in the new room to destinations beyond the switch."
+    ]
+  }
+}

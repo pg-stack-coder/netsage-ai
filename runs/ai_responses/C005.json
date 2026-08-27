@@ -1,0 +1,17 @@
+{
+  "case_id": "C005",
+  "raw_response": "{\n  \"root_cause\": \"The internal DNS server is missing the zone file for the company.com domain, so it cannot resolve internal hostnames, while external resolution succeeds via its forwarders.\",\n  \"confidence\": 95,\n  \"evidence\": \"nslookup for server1.company.com returns 'Non-existent domain' while external nslookup for google.com succeeds; directory listing of the internal DNS server shows only forwarders.conf with no company.com.zone file present.\",\n  \"next_command\": \"show running-config (or view DNS server configuration) to check configured DNS zones\",\n  \"fix_steps\": [\n    \"Log in to the internal DNS server management interface.\",\n    \"Create the primary forward lookup zone for company.com.\",\n    \"Add the necessary DNS A records for the internal servers (such as server1).\",\n    \"Test name resolution from an internal client using nslookup.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The internal DNS server is missing the zone file for the company.com domain, so it cannot resolve internal hostnames, while external resolution succeeds via its forwarders.",
+    "confidence": 95,
+    "evidence": "nslookup for server1.company.com returns 'Non-existent domain' while external nslookup for google.com succeeds; directory listing of the internal DNS server shows only forwarders.conf with no company.com.zone file present.",
+    "next_command": "show running-config (or view DNS server configuration) to check configured DNS zones",
+    "fix_steps": [
+      "Log in to the internal DNS server management interface.",
+      "Create the primary forward lookup zone for company.com.",
+      "Add the necessary DNS A records for the internal servers (such as server1).",
+      "Test name resolution from an internal client using nslookup."
+    ]
+  }
+}

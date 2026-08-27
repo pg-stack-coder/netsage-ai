@@ -1,0 +1,16 @@
+{
+  "case_id": "C006",
+  "raw_response": "{\n  \"root_cause\": \"Asymmetric routing or route flapping is occurring because the branch router has two equal-cost paths (or competing static and OSPF routes) to the HQ subnet, causing traffic to alternate between Fa0/0 and Fa0/1 on successive requests.\",\n  \"confidence\": 85,\n  \"evidence\": \"show ip route 172.16.0.0 shows two candidate routes via different next hops, and consecutive traceroutes alternate between the two different next-hop IP addresses (10.1.1.1 and 10.1.1.2).\",\n  \"next_command\": \"show ip protocols\",\n  \"fix_steps\": [\n    \"Run 'show ip protocols' or 'show ip route 172.16.0.0' to inspect the administrative distance and metrics of both routes.\",\n    \"Remove or adjust the unwanted backup route (e.g., increase the administrative distance of the static route or remove it entirely if OSPF should be preferred).\",\n    \"Verify that subsequent traceroutes consistently take a single, stable path.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "Asymmetric routing or route flapping is occurring because the branch router has two equal-cost paths (or competing static and OSPF routes) to the HQ subnet, causing traffic to alternate between Fa0/0 and Fa0/1 on successive requests.",
+    "confidence": 85,
+    "evidence": "show ip route 172.16.0.0 shows two candidate routes via different next hops, and consecutive traceroutes alternate between the two different next-hop IP addresses (10.1.1.1 and 10.1.1.2).",
+    "next_command": "show ip protocols",
+    "fix_steps": [
+      "Run 'show ip protocols' or 'show ip route 172.16.0.0' to inspect the administrative distance and metrics of both routes.",
+      "Remove or adjust the unwanted backup route (e.g., increase the administrative distance of the static route or remove it entirely if OSPF should be preferred).",
+      "Verify that subsequent traceroutes consistently take a single, stable path."
+    ]
+  }
+}

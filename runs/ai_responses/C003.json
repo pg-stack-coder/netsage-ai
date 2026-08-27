@@ -1,0 +1,17 @@
+{
+  "case_id": "C003",
+  "raw_response": "{\n  \"root_cause\": \"VLAN 40 is missing from the VLAN database on SW2, so the switch drops incoming traffic for VLAN 40 even though the trunk port allows it.\",\n  \"confidence\": 95,\n  \"evidence\": \"show vlan brief on SW2 lists VLANs 1, 10, 20, and 30 as active, but VLAN 40 is completely absent from the VLAN database.\",\n  \"next_command\": \"show vlan id 40\",\n  \"fix_steps\": [\n    \"Log into SW2 and enter global configuration mode.\",\n    \"Create VLAN 40 using the command 'vlan 40'.\",\n    \"Assign a name to VLAN 40 to match the rest of the network if required.\",\n    \"Verify VLAN 40 appears in the 'show vlan brief' output and traffic starts passing.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "VLAN 40 is missing from the VLAN database on SW2, so the switch drops incoming traffic for VLAN 40 even though the trunk port allows it.",
+    "confidence": 95,
+    "evidence": "show vlan brief on SW2 lists VLANs 1, 10, 20, and 30 as active, but VLAN 40 is completely absent from the VLAN database.",
+    "next_command": "show vlan id 40",
+    "fix_steps": [
+      "Log into SW2 and enter global configuration mode.",
+      "Create VLAN 40 using the command 'vlan 40'.",
+      "Assign a name to VLAN 40 to match the rest of the network if required.",
+      "Verify VLAN 40 appears in the 'show vlan brief' output and traffic starts passing."
+    ]
+  }
+}

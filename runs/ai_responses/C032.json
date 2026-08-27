@@ -1,0 +1,16 @@
+{
+  "case_id": "C032",
+  "raw_response": "{\n  \"root_cause\": \"VLAN 90 is missing the ip helper-address configuration for DHCP relay, and the router lacks a routing table entry for VLAN 10 (10.10.10.0/24), preventing inter-VLAN communication and DHCP lease acquisition.\",\n  \"confidence\": 100,\n  \"evidence\": \"show running-config interface Vlan90 shows no ip helper-address present, and show ip route 10.10.10.0 returns '% Network not in table'.\",\n  \"next_command\": \"show ip route\",\n  \"fix_steps\": [\n    \"Enter configuration mode for interface Vlan90 on the router.\",\n    \"Add 'ip helper-address <DHCP_Server_IP>' to enable DHCP relay.\",\n    \"Configure the missing static route to the VLAN 10 subnet (e.g., ip route 10.10.10.0 255.255.255.0 <next_hop>).\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "VLAN 90 is missing the ip helper-address configuration for DHCP relay, and the router lacks a routing table entry for VLAN 10 (10.10.10.0/24), preventing inter-VLAN communication and DHCP lease acquisition.",
+    "confidence": 100,
+    "evidence": "show running-config interface Vlan90 shows no ip helper-address present, and show ip route 10.10.10.0 returns '% Network not in table'.",
+    "next_command": "show ip route",
+    "fix_steps": [
+      "Enter configuration mode for interface Vlan90 on the router.",
+      "Add 'ip helper-address <DHCP_Server_IP>' to enable DHCP relay.",
+      "Configure the missing static route to the VLAN 10 subnet (e.g., ip route 10.10.10.0 255.255.255.0 <next_hop>)."
+    ]
+  }
+}

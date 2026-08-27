@@ -1,0 +1,16 @@
+{
+  "case_id": "C018",
+  "raw_response": "{\n  \"root_cause\": \"A native VLAN mismatch exists on the trunk link between SW1 (Native VLAN 1) and SW2 (Native VLAN 10), causing untagged traffic from VLAN 1 on SW1 to be treated as VLAN 10 on SW2, and vice versa.\",\n  \"confidence\": 100,\n  \"evidence\": \"show interfaces trunk reveals SW1 has native VLAN 1 while SW2 has native VLAN 10 on the same trunk link, and both switches logged the %CDP-4-NATIVE_VLAN_MISMATCH error.\",\n  \"next_command\": \"show vlan brief\",\n  \"fix_steps\": [\n    \"Log into SW1 and navigate to the trunk port interface configuration.\",\n    \"Configure the native VLAN on SW1 to match SW2 (vlan 10) using 'switchport trunk native vlan 10', OR change SW2 back to native VLAN 1.\",\n    \"Verify that the %CDP-4-NATIVE_VLAN_MISMATCH syslog message clears.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "A native VLAN mismatch exists on the trunk link between SW1 (Native VLAN 1) and SW2 (Native VLAN 10), causing untagged traffic from VLAN 1 on SW1 to be treated as VLAN 10 on SW2, and vice versa.",
+    "confidence": 100,
+    "evidence": "show interfaces trunk reveals SW1 has native VLAN 1 while SW2 has native VLAN 10 on the same trunk link, and both switches logged the %CDP-4-NATIVE_VLAN_MISMATCH error.",
+    "next_command": "show vlan brief",
+    "fix_steps": [
+      "Log into SW1 and navigate to the trunk port interface configuration.",
+      "Configure the native VLAN on SW1 to match SW2 (vlan 10) using 'switchport trunk native vlan 10', OR change SW2 back to native VLAN 1.",
+      "Verify that the %CDP-4-NATIVE_VLAN_MISMATCH syslog message clears."
+    ]
+  }
+}

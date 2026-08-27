@@ -1,0 +1,17 @@
+{
+  "case_id": "C035",
+  "raw_response": "{\n  \"root_cause\": \"The laptop has an incorrect default gateway configured (10.10.6.99 instead of the actual router interface IP of 10.10.6.1), causing it to fail in routing traffic outside its own subnet.\",\n  \"confidence\": 100,\n  \"evidence\": \"ipconfig /all shows the laptop's Default Gateway as 10.10.6.99, while the router's SVI (Vlan6) is configured as 10.10.6.1, and there is no ARP entry for the incorrect gateway IP.\",\n  \"next_command\": \"ipconfig /all (after fixing the gateway to confirm the new configuration)\",\n  \"fix_steps\": [\n    \"Open Network Connections on the employee's laptop.\",\n    \"Access the IPv4 properties of the network adapter.\",\n    \"Correct the Default Gateway field from 10.10.6.99 to 10.10.6.1.\",\n    \"Test connectivity to an external subnet or the internet.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The laptop has an incorrect default gateway configured (10.10.6.99 instead of the actual router interface IP of 10.10.6.1), causing it to fail in routing traffic outside its own subnet.",
+    "confidence": 100,
+    "evidence": "ipconfig /all shows the laptop's Default Gateway as 10.10.6.99, while the router's SVI (Vlan6) is configured as 10.10.6.1, and there is no ARP entry for the incorrect gateway IP.",
+    "next_command": "ipconfig /all (after fixing the gateway to confirm the new configuration)",
+    "fix_steps": [
+      "Open Network Connections on the employee's laptop.",
+      "Access the IPv4 properties of the network adapter.",
+      "Correct the Default Gateway field from 10.10.6.99 to 10.10.6.1.",
+      "Test connectivity to an external subnet or the internet."
+    ]
+  }
+}

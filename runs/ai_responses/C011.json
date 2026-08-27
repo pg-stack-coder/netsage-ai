@@ -1,0 +1,16 @@
+{
+  "case_id": "C011",
+  "raw_response": "{\n  \"root_cause\": \"The VLAN 50 interface on the router is missing a global unicast IPv6 address, only having a link-local address assigned, preventing communication with external subnets or the default gateway.\",\n  \"confidence\": 95,\n  \"evidence\": \"show ipv6 interface Vlan50 output only shows the link-local address 'FE80::1' and lacks any global unicast IPv6 address.\",\n  \"next_command\": \"show running-config interface Vlan50\",\n  \"fix_steps\": [\n    \"Enter interface configuration mode for VLAN 50 on the router.\",\n    \"Configure a global unicast IPv6 address using the 'ipv6 address <prefix>/<prefix-length>' command.\",\n    \"Verify the global IPv6 address appears using 'show ipv6 interface Vlan50'.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The VLAN 50 interface on the router is missing a global unicast IPv6 address, only having a link-local address assigned, preventing communication with external subnets or the default gateway.",
+    "confidence": 95,
+    "evidence": "show ipv6 interface Vlan50 output only shows the link-local address 'FE80::1' and lacks any global unicast IPv6 address.",
+    "next_command": "show running-config interface Vlan50",
+    "fix_steps": [
+      "Enter interface configuration mode for VLAN 50 on the router.",
+      "Configure a global unicast IPv6 address using the 'ipv6 address <prefix>/<prefix-length>' command.",
+      "Verify the global IPv6 address appears using 'show ipv6 interface Vlan50'."
+    ]
+  }
+}

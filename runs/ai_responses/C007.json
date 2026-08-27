@@ -1,0 +1,16 @@
+{
+  "case_id": "C007",
+  "raw_response": "{\n  \"root_cause\": \"The router has exhausted its pool of available dynamic NAT translation ports, reaching its peak translation limit (4096 active translations), which prevents new outbound connection attempts from internal hosts.\",\n  \"confidence\": 95,\n  \"evidence\": \"show ip nat statistics shows 4094 active dynamic translations out of a peak of 4096, and a new connection attempt from 192.168.1.55 directly resulted in a translation failure.\",\n  \"next_command\": \"show ip nat translations\",\n  \"fix_steps\": [\n    \"Run 'clear ip nat translation *' to clear existing NAT entries and temporarily restore connectivity.\",\n    \"Investigate internal hosts to identify any runaway processes, peer-to-peer applications, or malware generating excessive connections.\",\n    \"Consider adding a NAT translation timeout adjustment or expanding the public IP pool if hardware/licensing permits.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The router has exhausted its pool of available dynamic NAT translation ports, reaching its peak translation limit (4096 active translations), which prevents new outbound connection attempts from internal hosts.",
+    "confidence": 95,
+    "evidence": "show ip nat statistics shows 4094 active dynamic translations out of a peak of 4096, and a new connection attempt from 192.168.1.55 directly resulted in a translation failure.",
+    "next_command": "show ip nat translations",
+    "fix_steps": [
+      "Run 'clear ip nat translation *' to clear existing NAT entries and temporarily restore connectivity.",
+      "Investigate internal hosts to identify any runaway processes, peer-to-peer applications, or malware generating excessive connections.",
+      "Consider adding a NAT translation timeout adjustment or expanding the public IP pool if hardware/licensing permits."
+    ]
+  }
+}

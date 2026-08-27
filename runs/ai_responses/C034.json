@@ -1,0 +1,17 @@
+{
+  "case_id": "C034",
+  "raw_response": "{\n  \"root_cause\": \"A duplex mismatch exists between the user's PC network card (configured for full-duplex) and the switch port Fa0/12 (which auto-negotiated to half-duplex), causing late collisions and errors.\",\n  \"confidence\": 95,\n  \"evidence\": \"show interfaces Fa0/12 displays 'Half-duplex' along with late collisions and runts, whereas the baseline port Fa0/1 shows 'Full-duplex' with zero errors.\",\n  \"next_command\": \"show interfaces Fa0/12 counters errors\",\n  \"fix_steps\": [\n    \"Access the switch configuration mode for interface FastEthernet 0/12.\",\n    \"Explicitly set the interface duplex to full using the command 'duplex full'.\",\n    \"Ensure the speed is explicitly set to 100 Mbps using the command 'speed 100' to match the PC configuration.\",\n    \"Verify the user's connection performance and check that collision and runt errors cease.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "A duplex mismatch exists between the user's PC network card (configured for full-duplex) and the switch port Fa0/12 (which auto-negotiated to half-duplex), causing late collisions and errors.",
+    "confidence": 95,
+    "evidence": "show interfaces Fa0/12 displays 'Half-duplex' along with late collisions and runts, whereas the baseline port Fa0/1 shows 'Full-duplex' with zero errors.",
+    "next_command": "show interfaces Fa0/12 counters errors",
+    "fix_steps": [
+      "Access the switch configuration mode for interface FastEthernet 0/12.",
+      "Explicitly set the interface duplex to full using the command 'duplex full'.",
+      "Ensure the speed is explicitly set to 100 Mbps using the command 'speed 100' to match the PC configuration.",
+      "Verify the user's connection performance and check that collision and runt errors cease."
+    ]
+  }
+}

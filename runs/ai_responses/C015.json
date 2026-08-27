@@ -1,0 +1,16 @@
+{
+  "case_id": "C015",
+  "raw_response": "{\n  \"root_cause\": \"The primary internal DNS server (10.10.5.6) is unreachable or not responding to queries, causing the client or system to experience a 5-second timeout before failing over to the secondary DNS server (10.10.5.7).\",\n  \"confidence\": 95,\n  \"evidence\": \"debug ip dns query log shows 'query sent to 10.10.5.6, no response after 5000ms x3, retrying 10.10.5.7, response received', which accounts for the 5-10 second delay on lookups.\",\n  \"next_command\": \"ping 10.10.5.6\",\n  \"fix_steps\": [\n    \"Verify network connectivity and routing to the primary DNS server at 10.10.5.6.\",\n    \"Check if the DNS service is running on the primary DNS server host.\",\n    \"If the primary DNS server is permanently decommissioned or replaced, update the DNS client/forwarder configurations to remove or correct its IP address.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The primary internal DNS server (10.10.5.6) is unreachable or not responding to queries, causing the client or system to experience a 5-second timeout before failing over to the secondary DNS server (10.10.5.7).",
+    "confidence": 95,
+    "evidence": "debug ip dns query log shows 'query sent to 10.10.5.6, no response after 5000ms x3, retrying 10.10.5.7, response received', which accounts for the 5-10 second delay on lookups.",
+    "next_command": "ping 10.10.5.6",
+    "fix_steps": [
+      "Verify network connectivity and routing to the primary DNS server at 10.10.5.6.",
+      "Check if the DNS service is running on the primary DNS server host.",
+      "If the primary DNS server is permanently decommissioned or replaced, update the DNS client/forwarder configurations to remove or correct its IP address."
+    ]
+  }
+}

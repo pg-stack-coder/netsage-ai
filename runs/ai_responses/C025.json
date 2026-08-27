@@ -1,0 +1,16 @@
+{
+  "case_id": "C025",
+  "raw_response": "{\n  \"root_cause\": \"The switch ports connected to the devices are misconfigured as community ports instead of isolated ports, allowing the devices to communicate directly with each other and violating the intended isolation policy.\",\n  \"confidence\": 95,\n  \"evidence\": \"show interfaces private-vlan mapping output shows Fa0/3 and Fa0/4 configured as community ports, whereas the intended configuration for isolating them is isolated.\",\n  \"next_command\": \"show running-config interface range fastEthernet 0/3 - 4\",\n  \"fix_steps\": [\n    \"Access global configuration mode on the switch.\",\n    \"Navigate to interface range Fa0/3 - 4.\",\n    \"Change the private-vlan host-association to use the isolated VLAN instead of the community VLAN.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The switch ports connected to the devices are misconfigured as community ports instead of isolated ports, allowing the devices to communicate directly with each other and violating the intended isolation policy.",
+    "confidence": 95,
+    "evidence": "show interfaces private-vlan mapping output shows Fa0/3 and Fa0/4 configured as community ports, whereas the intended configuration for isolating them is isolated.",
+    "next_command": "show running-config interface range fastEthernet 0/3 - 4",
+    "fix_steps": [
+      "Access global configuration mode on the switch.",
+      "Navigate to interface range Fa0/3 - 4.",
+      "Change the private-vlan host-association to use the isolated VLAN instead of the community VLAN."
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "case_id": "C023",
+  "raw_response": "{\n  \"root_cause\": \"The specific employee's device is using an outdated pre-shared key (PSK) that was rotated last week, resulting in a PSK Mismatch authentication failure while everyone else uses the updated password.\",\n  \"confidence\": 95,\n  \"evidence\": \"show wireless client auth-failures shows the employee's MAC address with a 'PSK Mismatch' reason (count 14), whereas all other MAC addresses have 0 failures.\",\n  \"next_command\": \"none\",\n  \"fix_steps\": [\n    \"Obtain the newly rotated corporate Wi-Fi password from IT policy or documentation.\",\n    \"Navigate to the Wi-Fi settings on the employee's device.\",\n    \"Forget or delete the existing corporate wireless profile.\",\n    \"Reconnect to the corporate SSID using the new WPA2-PSK shared password.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The specific employee's device is using an outdated pre-shared key (PSK) that was rotated last week, resulting in a PSK Mismatch authentication failure while everyone else uses the updated password.",
+    "confidence": 95,
+    "evidence": "show wireless client auth-failures shows the employee's MAC address with a 'PSK Mismatch' reason (count 14), whereas all other MAC addresses have 0 failures.",
+    "next_command": "none",
+    "fix_steps": [
+      "Obtain the newly rotated corporate Wi-Fi password from IT policy or documentation.",
+      "Navigate to the Wi-Fi settings on the employee's device.",
+      "Forget or delete the existing corporate wireless profile.",
+      "Reconnect to the corporate SSID using the new WPA2-PSK shared password."
+    ]
+  }
+}

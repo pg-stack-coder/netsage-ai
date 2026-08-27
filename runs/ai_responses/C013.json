@@ -1,0 +1,16 @@
+{
+  "case_id": "C013",
+  "raw_response": "{\n  \"root_cause\": \"The GRE tunnel MTU is too large for the physical path, causing packets larger than 1476 bytes with the Don't Fragment (DF) bit set to be dropped instead of fragmented, which breaks large file transfers and web pages.\",\n  \"confidence\": 95,\n  \"evidence\": \"Small pings (size 100) succeed, but pings with size 1500 and the DF-bit set time out completely. The Tunnel0 MTU is currently set to the default 1476 bytes, which results in an effective packet size exceeding standard physical link MTUs when encapsulation overhead is added.\",\n  \"next_command\": \"show interfaces GigabitEthernet0/0\",\n  \"fix_steps\": [\n    \"Enter configuration mode for the tunnel interface (Tunnel0).\",\n    \"Configure 'ip mtu 1400' or 'ip tcp adjust-mss 1360' on the tunnel interface to ensure proper fragmentation and MSS clamping.\",\n    \"Verify large pings with the DF-bit set now succeed and file transfers work correctly.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The GRE tunnel MTU is too large for the physical path, causing packets larger than 1476 bytes with the Don't Fragment (DF) bit set to be dropped instead of fragmented, which breaks large file transfers and web pages.",
+    "confidence": 95,
+    "evidence": "Small pings (size 100) succeed, but pings with size 1500 and the DF-bit set time out completely. The Tunnel0 MTU is currently set to the default 1476 bytes, which results in an effective packet size exceeding standard physical link MTUs when encapsulation overhead is added.",
+    "next_command": "show interfaces GigabitEthernet0/0",
+    "fix_steps": [
+      "Enter configuration mode for the tunnel interface (Tunnel0).",
+      "Configure 'ip mtu 1400' or 'ip tcp adjust-mss 1360' on the tunnel interface to ensure proper fragmentation and MSS clamping.",
+      "Verify large pings with the DF-bit set now succeed and file transfers work correctly."
+    ]
+  }
+}

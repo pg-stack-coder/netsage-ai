@@ -1,0 +1,16 @@
+{
+  "case_id": "C022",
+  "raw_response": "{\n  \"root_cause\": \"An unauthorized personal Wi-Fi router is operating on the exact same channel (Channel 6) with a much stronger signal strength (-45dBm vs -68dBm) near the west side of the office, causing severe co-channel interference and performance degradation for clients connected to Corporate-AP1.\",\n  \"confidence\": 95,\n  \"evidence\": \"Site survey scan shows 'MyHomeWifi' broadcasting on Channel 6 with an RSSI of -45dBm, directly overlapping with Corporate-AP1 on Channel 6 which has an RSSI of -68dBm.\",\n  \"next_command\": \"show wireless client summary (or examine AP radio settings to check channel utilization and noise floor)\",\n  \"fix_steps\": [\n    \"Locate and physically remove or shut down the unauthorized personal Wi-Fi router ('MyHomeWifi').\",\n    \"Reconfigure Corporate-AP1 and Corporate-AP2 to use non-overlapping channels (1, 6, 11) with proper channel planning.\",\n    \"Verify west side employees regain stable connection speeds and proper signal quality.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "An unauthorized personal Wi-Fi router is operating on the exact same channel (Channel 6) with a much stronger signal strength (-45dBm vs -68dBm) near the west side of the office, causing severe co-channel interference and performance degradation for clients connected to Corporate-AP1.",
+    "confidence": 95,
+    "evidence": "Site survey scan shows 'MyHomeWifi' broadcasting on Channel 6 with an RSSI of -45dBm, directly overlapping with Corporate-AP1 on Channel 6 which has an RSSI of -68dBm.",
+    "next_command": "show wireless client summary (or examine AP radio settings to check channel utilization and noise floor)",
+    "fix_steps": [
+      "Locate and physically remove or shut down the unauthorized personal Wi-Fi router ('MyHomeWifi').",
+      "Reconfigure Corporate-AP1 and Corporate-AP2 to use non-overlapping channels (1, 6, 11) with proper channel planning.",
+      "Verify west side employees regain stable connection speeds and proper signal quality."
+    ]
+  }
+}

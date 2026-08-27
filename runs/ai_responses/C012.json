@@ -1,0 +1,17 @@
+{
+  "case_id": "C012",
+  "raw_response": "{\n  \"root_cause\": \"VLAN 60's SVI on the router lacks an ip helper-address command, which prevents DHCP broadcast requests from clients on VLAN 60 from being forwarded to the centralized DHCP server on VLAN 10.\",\n  \"confidence\": 95,\n  \"evidence\": \"show running-config interface Vlan60 shows an IP address configured but no ip helper-address, whereas VLAN 10 correctly has 'ip helper-address 10.10.10.5' configured.\",\n  \"next_command\": \"show running-config interface Vlan60\",\n  \"fix_steps\": [\n    \"Log into the core router/switch.\",\n    \"Enter global configuration mode and navigate to interface Vlan60.\",\n    \"Add the command 'ip helper-address 10.10.10.5' (using the IP address of the DHCP server).\",\n    \"Verify by testing if a laptop on VLAN 60 successfully receives an IP address.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "VLAN 60's SVI on the router lacks an ip helper-address command, which prevents DHCP broadcast requests from clients on VLAN 60 from being forwarded to the centralized DHCP server on VLAN 10.",
+    "confidence": 95,
+    "evidence": "show running-config interface Vlan60 shows an IP address configured but no ip helper-address, whereas VLAN 10 correctly has 'ip helper-address 10.10.10.5' configured.",
+    "next_command": "show running-config interface Vlan60",
+    "fix_steps": [
+      "Log into the core router/switch.",
+      "Enter global configuration mode and navigate to interface Vlan60.",
+      "Add the command 'ip helper-address 10.10.10.5' (using the IP address of the DHCP server).",
+      "Verify by testing if a laptop on VLAN 60 successfully receives an IP address."
+    ]
+  }
+}

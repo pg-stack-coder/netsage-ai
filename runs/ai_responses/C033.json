@@ -1,0 +1,16 @@
+{
+  "case_id": "C033",
+  "raw_response": "{\n  \"root_cause\": \"The WAN inbound ACL was written too broadly (denying the entire 10.0.0.0/8 range instead of a specific malicious IP) and is blocking legitimate return traffic, combined with NAT overload translations reaching full capacity.\",\n  \"confidence\": 95,\n  \"evidence\": \"show access-lists WAN-IN shows 2210 matches for 'deny ip 10.0.0.0 0.255.255.255 any', blocking legitimate private IP space, and show ip nat statistics confirms the translation table hit 4088 active translations.\",\n  \"next_command\": \"show ip nat translations\",\n  \"fix_steps\": [\n    \"Modify the WAN-IN access list to remove the overly broad 'deny ip 10.0.0.0 0.255.255.255 any' entry and replace it with the precise malicious IP range.\",\n    \"Clear existing NAT translations using 'clear ip nat translation *' to free up capacity after the traffic spike.\",\n    \"Verify internet connectivity for users behind the branch router.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The WAN inbound ACL was written too broadly (denying the entire 10.0.0.0/8 range instead of a specific malicious IP) and is blocking legitimate return traffic, combined with NAT overload translations reaching full capacity.",
+    "confidence": 95,
+    "evidence": "show access-lists WAN-IN shows 2210 matches for 'deny ip 10.0.0.0 0.255.255.255 any', blocking legitimate private IP space, and show ip nat statistics confirms the translation table hit 4088 active translations.",
+    "next_command": "show ip nat translations",
+    "fix_steps": [
+      "Modify the WAN-IN access list to remove the overly broad 'deny ip 10.0.0.0 0.255.255.255 any' entry and replace it with the precise malicious IP range.",
+      "Clear existing NAT translations using 'clear ip nat translation *' to free up capacity after the traffic spike.",
+      "Verify internet connectivity for users behind the branch router."
+    ]
+  }
+}

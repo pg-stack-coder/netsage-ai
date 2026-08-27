@@ -1,0 +1,17 @@
+{
+  "case_id": "C020",
+  "raw_response": "{\n  \"root_cause\": \"R1 and R2 are configured with different EIGRP autonomous system numbers (AS 100 on R1 and AS 200 on R2), preventing them from forming an adjacency.\",\n  \"confidence\": 100,\n  \"evidence\": \"R1 has 'router eigrp 100' while R2 has 'router eigrp 200' in their running configurations, and EIGRP requires matching autonomous system numbers on directly connected interfaces to form neighbors.\",\n  \"next_command\": \"show ip protocols\",\n  \"fix_steps\": [\n    \"Access global configuration mode on R1 or R2.\",\n    \"Remove the mismatched EIGRP router process.\",\n    \"Reconfigure EIGRP using the matching autonomous system number (either 100 or 200) on both routers.\",\n    \"Verify neighbor formation using 'show ip eigrp neighbors'.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "R1 and R2 are configured with different EIGRP autonomous system numbers (AS 100 on R1 and AS 200 on R2), preventing them from forming an adjacency.",
+    "confidence": 100,
+    "evidence": "R1 has 'router eigrp 100' while R2 has 'router eigrp 200' in their running configurations, and EIGRP requires matching autonomous system numbers on directly connected interfaces to form neighbors.",
+    "next_command": "show ip protocols",
+    "fix_steps": [
+      "Access global configuration mode on R1 or R2.",
+      "Remove the mismatched EIGRP router process.",
+      "Reconfigure EIGRP using the matching autonomous system number (either 100 or 200) on both routers.",
+      "Verify neighbor formation using 'show ip eigrp neighbors'."
+    ]
+  }
+}

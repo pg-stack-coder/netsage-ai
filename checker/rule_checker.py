@@ -65,6 +65,19 @@ def check_gateway_mismatch(text):
         text,
     ):
         return "Default gateway misconfiguration/mismatch detected."
+    # Realistic CLI evidence rarely narrates "gateway mismatch" -- instead
+    # you see the configured default gateway IP, then separately an ARP
+    # table with no entry for that same IP after repeated attempts. That
+    # combination is the actual signature of "gateway points at a device
+    # that doesn't exist on the subnet," so check for it directly.
+    gw_match = re.search(r"default gateway[:\s]+(\d{1,3}(?:\.\d{1,3}){3})", text)
+    if gw_match:
+        gw_ip = gw_match.group(1)
+        if re.search(r"no arp entry for[^.]{0,20}" + re.escape(gw_ip), text):
+            return (
+                f"Configured default gateway {gw_ip} does not correspond to any "
+                "device that responds on the subnet (no ARP entry found for it)."
+            )
     return None
 
 
@@ -85,6 +98,17 @@ def check_mtu_mismatch(text):
 def check_vtp_revision_overwrite(text):
     if "revision number" in text and ("higher" in text or "overwrit" in text):
         return "Possible VTP revision number overwrite (VLAN database may have been wiped)."
+    # Realistic 'show vtp status' output just states two differing
+    # "Configuration Revision" numbers rather than narrating that one is
+    # higher or that it overwrote anything -- same pattern this file
+    # already uses for native VLAN / MTU / EIGRP AS mismatches, so compare
+    # the numbers directly instead of looking for narration keywords.
+    revisions = re.findall(r"configuration revision[:\s]+(\d+)", text)
+    if len(revisions) >= 2 and len(set(revisions)) > 1:
+        return (
+            f"Differing VTP configuration revision numbers found: {sorted(set(revisions), key=int)} "
+            "-- a switch joining with the higher revision can silently overwrite the VLAN database domain-wide."
+        )
     return None
 
 
@@ -133,6 +157,30 @@ def check_missing_vlan(text):
         return "A referenced VLAN does not appear to be configured on this switch."
     if re.search(r"vlan\s+\d+[^.]{0,40}not configured", text):
         return "A referenced VLAN does not appear to be configured on this switch."
+    # Realistic evidence doesn't narrate a missing VLAN -- it just shows a
+    # trunk's allowed-VLAN list on one side and a plain 'show vlan brief'
+    # listing on the other, and expects the reader to notice a number is
+    # absent from one of them. Do that comparison directly.
+    trunk_match = re.search(r"allowed on trunk:?\s*([\d,\s]+)", text)
+    if trunk_match:
+        allowed = set(re.findall(r"\d+", trunk_match.group(1)))
+        configured = set(re.findall(r"vlan\s+(\d+)\s+\S+\s+active", text))
+        if configured:
+            missing = allowed - configured
+            if missing:
+                return (
+                    f"VLAN(s) {sorted(missing, key=int)} are allowed on the trunk but do not "
+                    "appear as active/configured on the far-side switch's VLAN table."
+                )
+        # Separately: a VLAN number referenced elsewhere in the case (e.g. in
+        # the symptom) that isn't even in the trunk's allowed list at all --
+        # signature of a VLAN pruned from / never added to a trunk.
+        other_mentions = set(re.findall(r"vlan\s+(\d+)", text)) - allowed
+        if other_mentions:
+            return (
+                f"VLAN(s) {sorted(other_mentions, key=int)} are referenced in this case but are "
+                "not present in the trunk's allowed VLAN list (possibly pruned or never added)."
+            )
     return None
 
 
@@ -146,6 +194,11 @@ def check_missing_route(text):
         return "Routing table appears to be missing an expected route."
     if re.search(r"no\s+entry for[^.]{0,60}\brout", text):
         return "Routing table appears to be missing an expected route."
+    # Standard IOS output for a missing route ("show ip route <net>" on a
+    # net with no matching entry) is literally "% Network not in table" --
+    # add that real message rather than only the narrated phrasings above.
+    if "network not in table" in text:
+        return "Routing table appears to be missing an expected route (\"% Network not in table\")."
     return None
 
 

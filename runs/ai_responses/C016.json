@@ -1,0 +1,17 @@
+{
+  "case_id": "C016",
+  "raw_response": "{\n  \"root_cause\": \"The ACL DB-ACCESS explicitly denies TCP port 1521 traffic (line 40) before the permissive catch-all rule (line 50), which blocks the custom database application traffic.\",\n  \"confidence\": 100,\n  \"evidence\": \"show access-lists output explicitly shows line '40 deny tcp any any eq 1521 (23 matches)' which is blocking the database port.\",\n  \"next_command\": \"show running-config interface <interface-name>\",\n  \"fix_steps\": [\n    \"Enter global configuration mode on the router.\",\n    \"Remove the deny statement for port 1521 from the access list (no 40 deny tcp any any eq 1521).\",\n    \"Add a permit statement for port 1521 (permit tcp any any eq 1521) in place of the denied rule.\",\n    \"Verify database application connectivity from staff to the partner server.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The ACL DB-ACCESS explicitly denies TCP port 1521 traffic (line 40) before the permissive catch-all rule (line 50), which blocks the custom database application traffic.",
+    "confidence": 100,
+    "evidence": "show access-lists output explicitly shows line '40 deny tcp any any eq 1521 (23 matches)' which is blocking the database port.",
+    "next_command": "show running-config interface <interface-name>",
+    "fix_steps": [
+      "Enter global configuration mode on the router.",
+      "Remove the deny statement for port 1521 from the access list (no 40 deny tcp any any eq 1521).",
+      "Add a permit statement for port 1521 (permit tcp any any eq 1521) in place of the denied rule.",
+      "Verify database application connectivity from staff to the partner server."
+    ]
+  }
+}

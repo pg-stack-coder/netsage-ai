@@ -1,0 +1,17 @@
+{
+  "case_id": "C021",
+  "raw_response": "{\n  \"root_cause\": \"The DHCP scope for VLAN 70 is completely exhausted (50 out of 50 addresses in use) because the number of devices has grown beyond the pool size, causing requests to fail during peak hours when all addresses are taken.\",\n  \"confidence\": 100,\n  \"evidence\": \"show ip dhcp pool VLAN70-POOL shows 50/50 addresses in use with 100% utilization, and debug ip dhcp server events explicitly states 'DHCPDISCOVER received, no addresses available, DHCPNAK not sent (pool exhausted)'.\",\n  \"next_command\": \"show ip dhcp binding\",\n  \"fix_steps\": [\n    \"Access the DHCP server configuration.\",\n    \"Expand the DHCP address pool size for VLAN 70 to accommodate more than 60+ devices.\",\n    \"Verify the subnet mask allows for the larger address range if expanding within the same subnet.\",\n    \"Monitor DHCP lease allocations during peak hours to ensure no further exhaustion occurs.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The DHCP scope for VLAN 70 is completely exhausted (50 out of 50 addresses in use) because the number of devices has grown beyond the pool size, causing requests to fail during peak hours when all addresses are taken.",
+    "confidence": 100,
+    "evidence": "show ip dhcp pool VLAN70-POOL shows 50/50 addresses in use with 100% utilization, and debug ip dhcp server events explicitly states 'DHCPDISCOVER received, no addresses available, DHCPNAK not sent (pool exhausted)'.",
+    "next_command": "show ip dhcp binding",
+    "fix_steps": [
+      "Access the DHCP server configuration.",
+      "Expand the DHCP address pool size for VLAN 70 to accommodate more than 60+ devices.",
+      "Verify the subnet mask allows for the larger address range if expanding within the same subnet.",
+      "Monitor DHCP lease allocations during peak hours to ensure no further exhaustion occurs."
+    ]
+  }
+}

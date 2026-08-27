@@ -1,0 +1,17 @@
+{
+  "case_id": "C027",
+  "raw_response": "{\n  \"root_cause\": \"The internal DNS view contains an outdated A record pointing wiki.company.com to an old server IP (10.10.9.9) with an unincremented zone serial, whereas the external view points to the correct cloud-hosted IP.\",\n  \"confidence\": 95,\n  \"evidence\": \"nslookup from the internal DNS view returns 10.10.9.9 with a zone serial modified 8 months ago, and the internal DNS configuration explicitly maps wiki.company.com to that outdated IP.\",\n  \"next_command\": \"show ip dns server records (or equivalent DNS server zone record check for the internal zone)\",\n  \"fix_steps\": [\n    \"Access the internal DNS server or authoritative zone file for company.com.\",\n    \"Update the A record for wiki.company.com to point to the correct internal server IP.\",\n    \"Increment the zone serial number so secondary servers and clients recognize the update.\",\n    \"Flush local DNS cache and re-test resolution from an internal client using nslookup.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "The internal DNS view contains an outdated A record pointing wiki.company.com to an old server IP (10.10.9.9) with an unincremented zone serial, whereas the external view points to the correct cloud-hosted IP.",
+    "confidence": 95,
+    "evidence": "nslookup from the internal DNS view returns 10.10.9.9 with a zone serial modified 8 months ago, and the internal DNS configuration explicitly maps wiki.company.com to that outdated IP.",
+    "next_command": "show ip dns server records (or equivalent DNS server zone record check for the internal zone)",
+    "fix_steps": [
+      "Access the internal DNS server or authoritative zone file for company.com.",
+      "Update the A record for wiki.company.com to point to the correct internal server IP.",
+      "Increment the zone serial number so secondary servers and clients recognize the update.",
+      "Flush local DNS cache and re-test resolution from an internal client using nslookup."
+    ]
+  }
+}

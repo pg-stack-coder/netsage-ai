@@ -1,0 +1,16 @@
+{
+  "case_id": "C014",
+  "raw_response": "{\n  \"root_cause\": \"A physical bridging loop has been created by the unmanaged switch connected to two access ports (Fa0/8 and Fa0/9) on the same VLAN because BPDU Guard is missing on access ports, resulting in a broadcast storm and intermittent connectivity loss.\",\n  \"confidence\": 95,\n  \"evidence\": \"show spanning-tree vlan 10 shows 14 topology changes in the last 5 minutes, and interface counters on Fa0/8 and Fa0/9 show rapidly rising broadcast packets (~3000/sec).\",\n  \"next_command\": \"show spanning-tree interface fa0/8 detail\",\n  \"fix_steps\": [\n    \"Disconnect one of the connections from the unmanaged switch to break the physical loop.\",\n    \"Enable Spanning Tree PortFast and BPDU Guard globally or on all access ports to automatically shut down ports receiving BPDUs or connected to loops.\",\n    \"Verify that topology changes stop increasing and interface broadcast counters return to normal baseline levels.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "A physical bridging loop has been created by the unmanaged switch connected to two access ports (Fa0/8 and Fa0/9) on the same VLAN because BPDU Guard is missing on access ports, resulting in a broadcast storm and intermittent connectivity loss.",
+    "confidence": 95,
+    "evidence": "show spanning-tree vlan 10 shows 14 topology changes in the last 5 minutes, and interface counters on Fa0/8 and Fa0/9 show rapidly rising broadcast packets (~3000/sec).",
+    "next_command": "show spanning-tree interface fa0/8 detail",
+    "fix_steps": [
+      "Disconnect one of the connections from the unmanaged switch to break the physical loop.",
+      "Enable Spanning Tree PortFast and BPDU Guard globally or on all access ports to automatically shut down ports receiving BPDUs or connected to loops.",
+      "Verify that topology changes stop increasing and interface broadcast counters return to normal baseline levels."
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "C019",
+  "raw_response": "{\n  \"root_cause\": \"OSPF neighbor state is stuck in EXSTART/EXCHANGE because of an MTU mismatch between R1 (MTU 1500) and R2 (MTU 1400) on the connecting interface.\",\n  \"confidence\": 95,\n  \"evidence\": \"R1's show ip ospf neighbor output shows the neighbor stuck in the EXSTART state, and show interfaces Gi0/0 confirms R1 has an MTU of 1500 while R2 has an MTU of 1400.\",\n  \"next_command\": \"show ip ospf interface Gi0/0\",\n  \"fix_steps\": [\n    \"Log into R1 or R2 to align the interface MTU settings so they match on both ends of the link.\",\n    \"Alternatively, configure 'ip ospf mtu-ignore' on the OSPF interface of the routers if the MTU cannot be physically changed.\",\n    \"Verify the OSPF neighbor state transitions from EXSTART to FULL using 'show ip ospf neighbor'.\"\n  ]\n}",
+  "parsed_ok": true,
+  "parsed": {
+    "root_cause": "OSPF neighbor state is stuck in EXSTART/EXCHANGE because of an MTU mismatch between R1 (MTU 1500) and R2 (MTU 1400) on the connecting interface.",
+    "confidence": 95,
+    "evidence": "R1's show ip ospf neighbor output shows the neighbor stuck in the EXSTART state, and show interfaces Gi0/0 confirms R1 has an MTU of 1500 while R2 has an MTU of 1400.",
+    "next_command": "show ip ospf interface Gi0/0",
+    "fix_steps": [
+      "Log into R1 or R2 to align the interface MTU settings so they match on both ends of the link.",
+      "Alternatively, configure 'ip ospf mtu-ignore' on the OSPF interface of the routers if the MTU cannot be physically changed.",
+      "Verify the OSPF neighbor state transitions from EXSTART to FULL using 'show ip ospf neighbor'."
+    ]
+  }
+}
