@@ -1,0 +1,13 @@
+Demo Video — Case C003 (Missing VLAN on Trunk)
+================================================
+
+The video itself is too large to store in this repository (253MB,
+over GitHub's 100MB per-file limit), so it's hosted on Google Drive:
+
+https://drive.google.com/file/d/14qQ9feIhDLm8VYngmGL8rATIKA5M23gh/view?usp=sharing
+
+Content: symptom (failed ping) -> AI diagnosis walkthrough -> human
+review -> live fix on Switch1 -> verification (successful ping).
+
+Companion Packet Tracer file for this same case: netsage_C003_vlan40.pkt
+(in this same folder).
